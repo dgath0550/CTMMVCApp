@@ -1,37 +1,38 @@
-﻿using CTMMVCApp.Models;
+﻿using CTMMVCApp.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CTMMVCApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        #region WebAPI
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
+        private readonly IFizzBuzz _IFizzBuzz; 
+
+        /// <summary>
+        /// For each multiple of 3, print "Fizz" instead of the number.
+        /// For each multiple of 5, print "Buzz" instead of the number.
+        /// For numbers which are multiples of both 3 and 5, print "FizzBuzz" instead of the number.
+        /// </summary>
+        /// <param name="n">Number between 1 and 0</param>
+        /// <returns>A list of strings</returns>
+        public async Task<ActionResult<List<string>>> FizzBuzz(int n) {
+
+            if(n <= 0)
+            {
+                return BadRequest("n must be greater than 0");
+            }
+            if (n > 100)
+            {
+                return BadRequest("n must be greater than 0");
+            }
+            var result = await _IFizzBuzz.FizzBuzzAsync(n);
+            return Ok(result);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        #endregion
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
