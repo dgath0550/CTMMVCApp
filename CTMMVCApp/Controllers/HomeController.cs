@@ -11,6 +11,11 @@ namespace CTMMVCApp.Controllers
 
         private readonly IFizzBuzz _IFizzBuzz; 
 
+        public HomeController(IFizzBuzz IFizzBuzz)
+        {
+            _IFizzBuzz = IFizzBuzz;
+        }
+
         /// <summary>
         /// For each multiple of 3, print "Fizz" instead of the number.
         /// For each multiple of 5, print "Buzz" instead of the number.
@@ -28,7 +33,7 @@ namespace CTMMVCApp.Controllers
             {
                 return BadRequest("n must be greater than 0");
             }
-            var result = await _IFizzBuzz.FizzBuzzAsync(n);
+            var result = await _IFizzBuzz.fizzBuzzAsync(n);
             return Ok(result);
         }
 

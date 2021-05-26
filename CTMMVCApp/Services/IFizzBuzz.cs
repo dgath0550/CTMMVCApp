@@ -5,8 +5,9 @@ namespace CTMMVCApp.Services
 {
     public interface IFizzBuzz
     {
-        public IEnumerable<string> MyFizzBuzz(int n);
+        public IEnumerable<string> fizzBuzz(int n);
 
-        public Task<IEnumerable<string>> FizzBuzzAsync(int n);
+        public Task<IEnumerable<string>> fizzBuzzAsync(int n);
+
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
 namespace CTMMVCApp.Services
 {
     /// <summary>
@@ -8,12 +7,12 @@ namespace CTMMVCApp.Services
     /// </summary>
     public class FizzBuzz : IFizzBuzz
     {
-        public Task<IEnumerable<string>> FizzBuzzAsync(int n)
+        public Task<IEnumerable<string>> fizzBuzzAsync(int n)
         {
-            return Task.FromResult<IEnumerable<string>>(MyFizzBuzz(n));
+            return Task.FromResult<IEnumerable<string>>(fizzBuzz(n));
         }
 
-        IEnumerable<string> MyFizzBuzz(int n)
+        public IEnumerable<string> fizzBuzz(int n)
         {
             var output = new List<string>();
 
@@ -38,17 +37,6 @@ namespace CTMMVCApp.Services
             }
 
             return output;
-        }
-
-
-        /// <summary>
-        /// TODO: Need to clean this up
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        IEnumerable<string> IFizzBuzz.MyFizzBuzz(int n)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
